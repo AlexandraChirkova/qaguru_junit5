@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import components.SortType;
-
+import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -20,7 +20,12 @@ public class ListingPage {
 
     public ListingPage openCategoryPage() {
         open(CATEGORY_PATH);
-        webdriver().shouldHave(urlContaining(CATEGORY_PATH));
+        webdriver().shouldHave(urlContaining(CATEGORY_PATH), Duration.ofSeconds(10));
+
+        Wait().until(driver ->
+                executeJavaScript("return document.readyState").equals("complete")
+        );
+
         return this;
     }
 
