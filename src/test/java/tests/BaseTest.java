@@ -14,7 +14,7 @@ public class BaseTest {
     }
 
     @AfterEach
-    void afterEach() {
+    void tearDown() {
         Selenide.closeWebDriver();
     }
 }
